@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here.
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 25% 12%;
+    --foreground: 0 0% 100%;
+
+    --card: 220 30% 15%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 220 30% 15%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 200 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 20% 25%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 15% 20%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 200 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 30%;
+    --input: 220 20% 30%;
+    --ring: 200 100% 50%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 220 30% 10%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 200 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 20% 20%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 20% 25%;
+    --sidebar-ring: 200 100% 50%;
+
+    /* Custom Avito Dashboard colors */
+    --glass-bg: hsla(220, 30%, 15%, 0.3);
+    --glass-border: hsla(0, 0%, 100%, 0.1);
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+    --info: 200 100% 50%;
+
+    -webkit-print-color-adjust: exact; /* Для WebKit-браузеров */
+    print-color-adjust: exact;         /* Стандартное свойство */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-foreground min-h-screen;
+    font-family: 'Inter', sans-serif;
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  /* Для WebKit-браузеров (Chrome, Safari, Edge) */
+  .bg-gray-900::-webkit-scrollbar {
+    width: 8px; /* Ширина скроллбара */
+  }
+
+  .bg-gray-900::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05); /* Полупрозрачный белый фон трека */
+    border-radius: 10px; /* Скругленные углы */
+  }
+
+  .bg-gray-900::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2); /* Полупрозрачный белый ползунок */
+    border-radius: 10px; /* Скругленные углы */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая граница для глубины */
+  }
+
+  .bg-gray-900::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3); /* Чуть ярче при наведении */
+  }
+
+  /* Для Firefox */
+  .bg-gray-900 {
+    scrollbar-width: thin; /* Тонкий скроллбар */
+    scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05); /* Цвет ползунка и трека */
+  }
+
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Стили для WebKit-браузеров (Chrome, Safari, Edge) */
+  .glass-card::-webkit-scrollbar {
+    width: 8px; /* Ширина скроллбара */
+  }
+
+  .glass-card::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05); /* Полупрозрачный белый фон трека для стекломорфизма */
+    border-radius: 10px; /* Скругленные углы */
+  }
+
+  .glass-card::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2); /* Полупрозрачный белый ползунок */
+    border-radius: 10px; /* Скругленные углы */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая граница для глубины */
+  }
+
+  .glass-card::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3); /* Чуть ярче при наведении */
+  }
+
+  /* Стили для Firefox */
+  .glass-card {
+    scrollbar-width: thin; /* Тонкий скроллбар */
+    scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05); /* Цвет ползунка и трека */
+  }
+
+  .glass-header {
+    background: hsla(220, 30%, 10%, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #00C4FF, #00FF99);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-500 to-cyan-400 hover:from-blue-600 hover:to-cyan-500 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl;
+  }
+
+  .btn-secondary {
+    @apply glass-card hover:bg-slate-700/30 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200;
+  }
+
+  .progress-bar {
+    @apply w-full bg-slate-700 rounded-full h-2 overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300;
+  }
+
+  /* Print-specific styles for A4 PDF optimization */
+  .print-page {
+    @apply min-h-0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .print-page-break {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  .print-avoid-break {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
+
+/* Print styles for A4 PDF optimization */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 15mm 10mm;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .print-page {
+    min-height: 250mm;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .print-page-break {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  .print-avoid-break {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 10mm;
+  }
+
+  .print-metrics {
+    margin-bottom: 15mm;
+  }
+
+  .chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    page-break-inside: avoid;
+  }
+
+  .print-chart {
+    height: auto !important;
+  }
+
+  .print-chart svg {
+    height: auto !important;
+  }
+
+  .recharts-wrapper {
+    height: auto !important; /* Убираем фиксированную высоту для графиков */
+  }
+
+  .glass-card {
+    background: var(--glass-bg) !important; /* Сохраняем оригинальный фон */
+    border: 1px solid var(--glass-border) !important;
+  }
+
+  .text-white {
+    color: #fff !important; /* Сохраняем белый текст */
+  }
+
+  .bg-gradient-to-r,
+  .bg-gradient-to-br {
+    background: inherit !important; /* Сохраняем оригинальные градиенты */
+  }
+
+  .hidden-on-print {
+    display: none !important;
+  }
+}
+
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
