@@ -99,28 +99,28 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   return (
     <div className={cn("glass-card p-4 rounded-xl", className)}>
       <div className="flex items-center space-x-4">
-        <span className="text-white font-medium">Период</span>
+        <span className="text-foreground font-medium">Период</span>
         <Popover open={isOpen} onOpenChange={setIsOpen}>
           <PopoverTrigger asChild>
             <Button
               variant="outline"
               className={cn(
-                "w-[280px] justify-between text-left font-normal bg-white/10 border-white/20 text-white hover:bg-white/20",
-                !date && "text-gray-400"
+                "w-[280px] justify-between text-left font-normal glass-input text-foreground hover:bg-accent/50",
+                !date && "text-muted-foreground"
               )}
             >
               {formatDateRange(date)}
               <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-auto p-0 bg-gray-900 border-gray-700" align="start">
+          <PopoverContent className="w-auto p-0 glass-card border-border" align="start">
             <div className="flex max-w-3xl">
-              <div className="border-r border-gray-700 p-4 space-y-2">
+              <div className="border-r border-border/50 p-4 space-y-2">
                 {presetRanges.map((preset, index) => (
                   <Button
                     key={index}
                     variant="ghost"
-                    className="w-full justify-start text-white hover:bg-white/10"
+                    className="w-full justify-start text-foreground hover:bg-accent"
                     onClick={() => handlePresetClick(preset.range)}
                   >
                     {preset.label}
@@ -142,14 +142,14 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
                     variant="outline"
                     size="sm"
                     onClick={() => setIsOpen(false)}
-                    className="text-gray-300 border-gray-600 hover:bg-gray-700"
+                    className="text-muted-foreground border-border hover:bg-accent"
                   >
                     Отмена
                   </Button>
                   <Button
                     size="sm"
                     onClick={() => setIsOpen(false)}
-                    className="bg-gradient-to-r from-blue-500 to-cyan-400"
+                    className="btn-primary"
                   >
                     Применить
                   </Button>

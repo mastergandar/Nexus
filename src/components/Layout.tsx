@@ -9,11 +9,13 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900">
+    <div className="min-h-screen bg-background">
       <Sidebar />
       <Header />
-      <main className="ml-16 lg:ml-64 pt-16 p-6">
-        {children}
+      <main className="ml-16 lg:ml-64 pt-16 p-6 custom-scrollbar">
+        <div className="max-w-7xl mx-auto">
+          {children}
+        </div>
       </main>
     </div>
   );

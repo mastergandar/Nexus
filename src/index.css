@@ -8,54 +8,105 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 220 25% 12%;
-    --foreground: 0 0% 100%;
+    /* Light theme */
+    --background: 0 0% 100%;
+    --foreground: 222 84% 4.9%;
 
-    --card: 220 30% 15%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 4.9%;
 
-    --popover: 220 30% 15%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 4.9%;
 
-    --primary: 200 100% 50%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 220 20% 25%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 84% 4.9%;
 
-    --muted: 220 15% 20%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 200 100% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 84% 4.9%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 220 20% 30%;
-    --input: 220 20% 30%;
-    --ring: 200 100% 50%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
 
-    --radius: 1rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 220 30% 10%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 200 100% 50%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 20% 20%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 220 20% 25%;
-    --sidebar-ring: 200 100% 50%;
-
-    /* Custom Avito Dashboard colors */
-    --glass-bg: hsla(220, 30%, 15%, 0.3);
-    --glass-border: hsla(0, 0%, 100%, 0.1);
+    /* Glassmorphism colors for light theme */
+    --glass-bg: hsla(0, 0%, 100%, 0.8);
+    --glass-border: hsla(0, 0%, 0%, 0.1);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    
+    /* Custom colors */
     --success: 142 76% 36%;
     --warning: 38 92% 50%;
-    --info: 200 100% 50%;
+    --info: 221 83% 53%;
+    --purple: 262 83% 58%;
+    --pink: 330 81% 60%;
+    --orange: 25 95% 53%;
 
-    -webkit-print-color-adjust: exact; /* Для WebKit-браузеров */
-    print-color-adjust: exact;         /* Стандартное свойство */
+    /* Background gradients */
+    --bg-gradient-1: #667eea;
+    --bg-gradient-2: #764ba2;
+    --bg-gradient-3: #f093fb;
+    --bg-gradient-4: #f5576c;
+  }
+
+  .dark {
+    /* Dark theme */
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 84% 4.9%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 224 76% 48%;
+
+    /* Glassmorphism colors for dark theme */
+    --glass-bg: hsla(222, 84%, 4.9%, 0.8);
+    --glass-border: hsla(0, 0%, 100%, 0.1);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    
+    /* Custom colors for dark theme */
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+    --info: 217 91% 60%;
+    --purple: 262 83% 58%;
+    --pink: 330 81% 60%;
+    --orange: 25 95% 53%;
+
+    /* Background gradients for dark theme */
+    --bg-gradient-1: #1a1a2e;
+    --bg-gradient-2: #16213e;
+    --bg-gradient-3: #0f3460;
+    --bg-gradient-4: #533483;
   }
 }
 
@@ -65,102 +116,154 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-foreground min-h-screen;
+    @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
     background-attachment: fixed;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Dark theme background */
+  .dark body {
+    background: linear-gradient(135deg, var(--bg-gradient-1), var(--bg-gradient-2), var(--bg-gradient-3), var(--bg-gradient-4));
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+
+  /* Light theme background */
+  body:not(.dark) {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 }
 
 @layer utilities {
-  /* Для WebKit-браузеров (Chrome, Safari, Edge) */
-  .bg-gray-900::-webkit-scrollbar {
-    width: 8px; /* Ширина скроллбара */
+  /* Scrollbar styles */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
   }
 
-  .bg-gray-900::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05); /* Полупрозрачный белый фон трека */
-    border-radius: 10px; /* Скругленные углы */
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 8px;
   }
 
-  .bg-gray-900::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2); /* Полупрозрачный белый ползунок */
-    border-radius: 10px; /* Скругленные углы */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая граница для глубины */
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground));
+    border-radius: 8px;
+    border: 1px solid hsl(var(--border));
   }
 
-  .bg-gray-900::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3); /* Чуть ярче при наведении */
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
   }
 
-  /* Для Firefox */
-  .bg-gray-900 {
-    scrollbar-width: thin; /* Тонкий скроллбар */
-    scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05); /* Цвет ползунка и трека */
-  }
-
+  /* Glassmorphism effects */
   .glass-card {
     background: var(--glass-bg);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--glass-shadow);
+    transition: all 0.3s ease;
   }
 
-  /* Стили для WebKit-браузеров (Chrome, Safari, Edge) */
-  .glass-card::-webkit-scrollbar {
-    width: 8px; /* Ширина скроллбара */
-  }
-
-  .glass-card::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05); /* Полупрозрачный белый фон трека для стекломорфизма */
-    border-radius: 10px; /* Скругленные углы */
-  }
-
-  .glass-card::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2); /* Полупрозрачный белый ползунок */
-    border-radius: 10px; /* Скругленные углы */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая граница для глубины */
-  }
-
-  .glass-card::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3); /* Чуть ярче при наведении */
-  }
-
-  /* Стили для Firefox */
-  .glass-card {
-    scrollbar-width: thin; /* Тонкий скроллбар */
-    scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05); /* Цвет ползунка и трека */
+  .glass-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
   }
 
   .glass-header {
-    background: hsla(220, 30%, 10%, 0.8);
+    background: var(--glass-bg);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
   }
 
+  .glass-sidebar {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  /* Gradient text effects */
   .gradient-text {
-    background: linear-gradient(135deg, #00C4FF, #00FF99);
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--info)));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
+  .gradient-text-gold {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Button styles */
   .btn-primary {
-    @apply bg-gradient-to-r from-blue-500 to-cyan-400 hover:from-blue-600 hover:to-cyan-500 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl;
+    @apply bg-gradient-to-r from-primary to-info hover:from-primary/90 hover:to-info/90 text-primary-foreground font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl;
   }
 
   .btn-secondary {
-    @apply glass-card hover:bg-slate-700/30 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200;
+    @apply glass-card hover:bg-accent/50 text-foreground font-medium px-4 py-2 rounded-lg transition-all duration-200;
   }
 
+  .btn-success {
+    @apply bg-gradient-to-r from-success to-green-400 hover:from-success/90 hover:to-green-400/90 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl;
+  }
+
+  .btn-warning {
+    @apply bg-gradient-to-r from-warning to-orange-400 hover:from-warning/90 hover:to-orange-400/90 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl;
+  }
+
+  /* Progress bars */
   .progress-bar {
-    @apply w-full bg-slate-700 rounded-full h-2 overflow-hidden;
+    @apply w-full bg-muted rounded-full h-2 overflow-hidden;
   }
 
   .progress-fill {
-    @apply h-full bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300;
+    @apply h-full bg-gradient-to-r from-primary to-info transition-all duration-300;
   }
 
-  /* Print-specific styles for A4 PDF optimization */
+  /* Card styles */
+  .metric-card {
+    @apply glass-card p-6 rounded-xl transition-all duration-300 hover:scale-105;
+  }
+
+  .metric-card:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  /* Chart containers */
+  .chart-container {
+    @apply glass-card p-6 rounded-xl;
+  }
+
+  /* Navigation styles */
+  .nav-item {
+    @apply flex items-center px-4 py-3 rounded-lg transition-all duration-200 group;
+  }
+
+  .nav-item-active {
+    @apply bg-gradient-to-r from-primary/20 to-info/20 text-primary border border-primary/30;
+  }
+
+  .nav-item-inactive {
+    @apply text-muted-foreground hover:bg-accent hover:text-foreground;
+  }
+
+  /* Input styles */
+  .glass-input {
+    @apply glass-card border border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-200;
+  }
+
+  /* Print styles */
   .print-page {
     @apply min-h-0;
     page-break-inside: avoid;
@@ -227,21 +330,21 @@ All colors MUST be HSL.
   }
 
   .recharts-wrapper {
-    height: auto !important; /* Убираем фиксированную высоту для графиков */
+    height: auto !important;
   }
 
   .glass-card {
-    background: var(--glass-bg) !important; /* Сохраняем оригинальный фон */
+    background: var(--glass-bg) !important;
     border: 1px solid var(--glass-border) !important;
   }
 
-  .text-white {
-    color: #fff !important; /* Сохраняем белый текст */
+  .text-foreground {
+    color: hsl(var(--foreground)) !important;
   }
 
   .bg-gradient-to-r,
   .bg-gradient-to-br {
-    background: inherit !important; /* Сохраняем оригинальные градиенты */
+    background: inherit !important;
   }
 
   .hidden-on-print {

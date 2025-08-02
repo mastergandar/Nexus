@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ComparisonProvider } from "./contexts/ComparisonContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import Accounts from "./pages/Accounts";
@@ -21,40 +22,44 @@ import ReportView from "@/pages/ReportView.tsx";
 
 const queryClient = new QueryClient();
 
-const App = () => (
+const App = () => {
+  return (
     <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
         <TooltipProvider>
-            <ComparisonProvider>
+          <ComparisonProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <div className="min-h-screen bg-background">
+                <Routes>
+                  <Route path="/reports/preview/:id" element={<ReportView />} />
+                  <Route path="/*" element={
+                    <Layout>
+                      <Routes>
+                        <Route path="/" element={<Dashboard />} />
+                        <Route path="/accounts" element={<Accounts />} />
+                        <Route path="/listings" element={<Listings />} />
+                        <Route path="/statistics" element={<Statistics />} />
+                        <Route path="/reports" element={<Reports />} />
+                        <Route path="/balance" element={<Balance />} />
+                        <Route path="/settings" element={<Settings />} />
+                        <Route path="/ai-tools" element={<AITools />} />
+                        <Route path="/listings/file/:cabinetId" element={<FileVacancies />} />
+                        <Route path="/account-comparison" element={<AccountComparison />} />
+                        <Route path="*" element={<NotFound />} />
+                      </Routes>
+                    </Layout>
+                  } />
+                </Routes>
                 <Toaster />
-                <Sonner />
-                <BrowserRouter>
-                    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
-                        <Routes>
-                            <Route path="/reports/preview/:id" element={<ReportView />} />
-                            <Route path="/*" element={
-                                <Layout>
-                                    <Routes>
-                                        <Route path="/" element={<Dashboard />} />
-                                        <Route path="/accounts" element={<Accounts />} />
-                                        <Route path="/listings" element={<Listings />} />
-                                        <Route path="/statistics" element={<Statistics />} />
-                                        <Route path="/reports" element={<Reports />} />
-                                        <Route path="/balance" element={<Balance />} />
-                                        <Route path="/settings" element={<Settings />} />
-                                        <Route path="/ai-tools" element={<AITools />} />
-                                        <Route path="/listings/file/:cabinetId" element={<FileVacancies />} />
-                                        <Route path="/account-comparison" element={<AccountComparison />} />
-                                        <Route path="*" element={<NotFound />} />
-                                    </Routes>
-                                </Layout>
-                            } />
-                        </Routes>
-                        <Toaster />
-                    </div>
-                </BrowserRouter>
-            </ComparisonProvider>
+              </div>
+            </BrowserRouter>
+          </ComparisonProvider>
         </TooltipProvider>
+      </ThemeProvider>
     </QueryClientProvider>
-);
+  );
+};
 
 export default App;

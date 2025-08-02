@@ -16,23 +16,29 @@ const ProgressCard: React.FC<ProgressCardProps> = ({
   unit, 
   percentage 
 }) => {
+  const getProgressColor = (percentage: number) => {
+    if (percentage >= 80) return 'bg-destructive';
+    if (percentage >= 60) return 'bg-warning';
+    return 'bg-success';
+  };
+
   return (
-    <div className="glass-card p-6 rounded-xl">
+    <div className="metric-card">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-white">{title}</h3>
-        <span className="text-gray-400 text-sm">{percentage}%</span>
+        <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+        <span className="text-muted-foreground text-sm">{percentage}%</span>
       </div>
       
       <div className="mb-4">
-        <p className="text-2xl font-bold text-white mb-1">
-          {current} <span className="text-lg text-gray-400">{unit}</span>
+        <p className="text-2xl font-bold text-foreground mb-1">
+          {current} <span className="text-lg text-muted-foreground">{unit}</span>
         </p>
-        <p className="text-gray-400 text-sm">из {total} {unit}</p>
+        <p className="text-muted-foreground text-sm">из {total} {unit}</p>
       </div>
       
       <div className="progress-bar">
         <div 
-          className="progress-fill"
+          className={`progress-fill ${getProgressColor(percentage)}`}
           style={{ width: `${percentage}%` }}
         ></div>
       </div>

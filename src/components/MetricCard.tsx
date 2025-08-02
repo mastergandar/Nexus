@@ -7,7 +7,7 @@ interface MetricCardProps {
   value: string | number;
   change?: string;
   icon: LucideIcon;
-  color?: 'blue' | 'green' | 'orange' | 'red';
+  color?: 'blue' | 'green' | 'orange' | 'red' | 'purple' | 'pink';
 }
 
 const MetricCard: React.FC<MetricCardProps> = ({ 
@@ -18,26 +18,39 @@ const MetricCard: React.FC<MetricCardProps> = ({
   color = 'blue' 
 }) => {
   const colorClasses = {
-    blue: 'from-blue-500 to-cyan-400',
-    green: 'from-green-500 to-emerald-400',
-    orange: 'from-orange-500 to-yellow-400',
-    red: 'from-red-500 to-pink-400'
+    blue: 'from-primary to-info',
+    green: 'from-success to-green-400',
+    orange: 'from-warning to-orange-400',
+    red: 'from-destructive to-red-400',
+    purple: 'from-purple to-purple-400',
+    pink: 'from-pink to-pink-400'
   };
 
-  const changeColor = change?.startsWith('+') ? 'text-green-400' : 'text-red-400';
+  const iconBgClasses = {
+    blue: 'bg-primary/20 text-primary',
+    green: 'bg-success/20 text-success',
+    orange: 'bg-warning/20 text-warning',
+    red: 'bg-destructive/20 text-destructive',
+    purple: 'bg-purple/20 text-purple',
+    pink: 'bg-pink/20 text-pink'
+  };
+
+  const changeColor = change?.startsWith('+') ? 'text-success' : 'text-destructive';
 
   return (
-    <div className="glass-card p-6 rounded-xl hover:bg-white/5 transition-all duration-200">
+    <div className="metric-card">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-gray-400 text-sm mb-1">{title}</p>
-          <p className="text-2xl font-bold text-white">{value}</p>
+          <p className="text-muted-foreground text-sm mb-1">{title}</p>
+          <p className="text-2xl font-bold text-foreground">{value}</p>
           {change && (
-            <p className={`text-sm ${changeColor} mt-1`}>{change}</p>
+            <p className={`text-sm ${changeColor} mt-1 flex items-center`}>
+              {change}
+            </p>
           )}
         </div>
-        <div className={`w-12 h-12 bg-gradient-to-r ${colorClasses[color]} rounded-lg flex items-center justify-center`}>
-          <Icon className="w-6 h-6 text-white" />
+        <div className={`w-12 h-12 ${iconBgClasses[color]} rounded-lg flex items-center justify-center`}>
+          <Icon className="w-6 h-6" />
         </div>
       </div>
     </div>

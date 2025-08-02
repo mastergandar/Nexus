@@ -9,7 +9,9 @@ import {
   Wallet, 
   Bot, 
   Settings,
-  Layers
+  Layers,
+  TrendingUp,
+  PieChart
 } from 'lucide-react';
 
 const navigationItems = [
@@ -19,16 +21,17 @@ const navigationItems = [
   { to: '/listings', icon: FileText, label: 'Объявления' },
   { to: '/balance', icon: Wallet, label: 'Баланс' },
   { to: '/ai-tools', icon: Bot, label: 'ИИ-инструменты' },
+  { to: '/reports', icon: PieChart, label: 'Отчеты' },
   { to: '/settings', icon: Settings, label: 'Настройки' },
 ];
 
 const Sidebar = () => {
   return (
-    <div className="w-16 lg:w-64 h-full glass-card fixed left-0 top-0 z-30 transition-all duration-300">
-      <div className="p-4 border-b border-white/10">
+    <div className="w-16 lg:w-64 h-full glass-sidebar fixed left-0 top-0 z-30 transition-all duration-300">
+      <div className="p-4 border-b border-border/50">
         <div className="flex items-center justify-center lg:justify-start">
-          <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center">
-            <Layers className="w-5 h-5 text-white" />
+          <div className="w-8 h-8 bg-gradient-to-r from-primary to-info rounded-lg flex items-center justify-center">
+            <Layers className="w-5 h-5 text-primary-foreground" />
           </div>
           <span className="ml-3 font-bold text-lg gradient-text hidden lg:block">
             AvitoNexus
@@ -42,10 +45,10 @@ const Sidebar = () => {
             key={item.to}
             to={item.to}
             className={({ isActive }) =>
-              `flex items-center px-3 py-3 mb-2 rounded-lg transition-all duration-200 group ${
+              `nav-item ${
                 isActive
-                  ? 'bg-gradient-to-r from-blue-500/20 to-cyan-400/20 text-cyan-400 border border-cyan-400/30'
-                  : 'text-gray-300 hover:bg-white/10 hover:text-white'
+                  ? 'nav-item-active'
+                  : 'nav-item-inactive'
               }`
             }
           >
@@ -54,6 +57,20 @@ const Sidebar = () => {
           </NavLink>
         ))}
       </nav>
+
+      {/* Bottom section with additional info */}
+      <div className="absolute bottom-4 left-2 right-2 hidden lg:block">
+        <div className="glass-card p-4 rounded-lg">
+          <div className="flex items-center space-x-2 mb-2">
+            <TrendingUp className="w-4 h-4 text-success" />
+            <span className="text-xs font-medium text-foreground">Статус системы</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-muted-foreground">Все сервисы</span>
+            <div className="w-2 h-2 bg-success rounded-full"></div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
