@@ -18,7 +18,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
   color = 'blue' 
 }) => {
   const colorClasses = {
-    blue: 'from-primary to-info',
+    blue: 'from-primary to-blue-400',
     green: 'from-success to-green-400',
     orange: 'from-warning to-orange-400',
     red: 'from-destructive to-red-400',

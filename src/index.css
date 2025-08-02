@@ -46,10 +46,15 @@ All colors MUST be HSL.
     
     /* Custom colors */
     --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
     --info: 221 83% 53%;
+    --info-foreground: 0 0% 100%;
     --purple: 262 83% 58%;
+    --purple-foreground: 0 0% 100%;
     --pink: 330 81% 60%;
+    --pink-foreground: 0 0% 100%;
     --orange: 25 95% 53%;
 
     /* Background gradients */
@@ -96,10 +101,15 @@ All colors MUST be HSL.
     
     /* Custom colors for dark theme */
     --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
     --info: 217 91% 60%;
+    --info-foreground: 0 0% 100%;
     --purple: 262 83% 58%;
+    --purple-foreground: 0 0% 100%;
     --pink: 330 81% 60%;
+    --pink-foreground: 0 0% 100%;
     --orange: 25 95% 53%;
 
     /* Background gradients for dark theme */
@@ -207,7 +217,7 @@ All colors MUST be HSL.
 
   /* Button styles */
   .btn-primary {
-    @apply bg-gradient-to-r from-primary to-info hover:from-primary/90 hover:to-info/90 text-primary-foreground font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl;
+    @apply bg-gradient-to-r from-primary to-blue-400 hover:from-primary/90 hover:to-blue-400/90 text-primary-foreground font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl;
   }
 
   .btn-secondary {
@@ -228,7 +238,7 @@ All colors MUST be HSL.
   }
 
   .progress-fill {
-    @apply h-full bg-gradient-to-r from-primary to-info transition-all duration-300;
+    @apply h-full bg-gradient-to-r from-primary to-blue-400 transition-all duration-300;
   }
 
   /* Card styles */
@@ -251,7 +261,7 @@ All colors MUST be HSL.
   }
 
   .nav-item-active {
-    @apply bg-gradient-to-r from-primary/20 to-info/20 text-primary border border-primary/30;
+    @apply bg-gradient-to-r from-primary/20 to-blue-400/20 text-primary border border-primary/30;
   }
 
   .nav-item-inactive {

@@ -50,7 +50,7 @@ const Header = () => {
         <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
         
         <div className="flex items-center space-x-3 cursor-pointer group">
-          <div className="w-8 h-8 bg-gradient-to-r from-primary to-info rounded-full flex items-center justify-center">
+          <div className="w-8 h-8 bg-gradient-to-r from-primary to-blue-400 rounded-full flex items-center justify-center">
             <User className="w-4 h-4 text-primary-foreground" />
           </div>
           <div className="hidden lg:block">

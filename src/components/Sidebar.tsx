@@ -30,7 +30,7 @@ const Sidebar = () => {
     <div className="w-16 lg:w-64 h-full glass-sidebar fixed left-0 top-0 z-30 transition-all duration-300">
       <div className="p-4 border-b border-border/50">
         <div className="flex items-center justify-center lg:justify-start">
-          <div className="w-8 h-8 bg-gradient-to-r from-primary to-info rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 bg-gradient-to-r from-primary to-blue-400 rounded-lg flex items-center justify-center">
             <Layers className="w-5 h-5 text-primary-foreground" />
           </div>
           <span className="ml-3 font-bold text-lg gradient-text hidden lg:block">
