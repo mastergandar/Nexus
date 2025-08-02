@@ -45,7 +45,7 @@ const Sidebar = () => {
             key={item.to}
             to={item.to}
             className={({ isActive }) =>
-              `nav-item ${
+              `nav-item group ${
                 isActive
                   ? 'nav-item-active'
                   : 'nav-item-inactive'
